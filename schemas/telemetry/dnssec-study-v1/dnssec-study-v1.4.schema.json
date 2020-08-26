@@ -1,5 +1,10 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
+  "mozPipelineMetadata": {
+    "bq_dataset_family": "telemetry",
+    "bq_table": "dnssec_study_v1_v4",
+    "uri_scheme": "telemetry"
+  },
   "properties": {
     "application": {
       "additionalProperties": false,
@@ -831,7 +836,10 @@
                   "items": {
                     "properties": {
                       "GPUActive": {
-                        "type": "boolean"
+                        "type": [
+                          "boolean",
+                          "null"
+                        ]
                       },
                       "RAM": {
                         "type": [
@@ -1300,6 +1308,10 @@
                 "minimum": 0,
                 "type": "number"
               },
+              "tcpADO": {
+                "minimum": 0,
+                "type": "number"
+              },
               "tcpDNSKEY": {
                 "minimum": 0,
                 "type": "number"
@@ -1325,6 +1337,10 @@
                 "type": "number"
               },
               "udpA": {
+                "minimum": 0,
+                "type": "number"
+              },
+              "udpADO": {
                 "minimum": 0,
                 "type": "number"
               },
@@ -1357,6 +1373,12 @@
           },
           "properties": {
             "tcpA": {
+              "items": {
+                "type": "integer"
+              },
+              "type": "array"
+            },
+            "tcpADO": {
               "items": {
                 "type": "integer"
               },
@@ -1399,6 +1421,12 @@
               "type": "array"
             },
             "udpA": {
+              "items": {
+                "type": "integer"
+              },
+              "type": "array"
+            },
+            "udpADO": {
               "items": {
                 "type": "integer"
               },
@@ -1448,15 +1476,6 @@
           "type": "number"
         },
         "errorRRTYPE": {
-          "enum": [
-            "A",
-            "RRSIG",
-            "DNSKEY",
-            "SMIMEA",
-            "HTTPS",
-            "NEWONE",
-            "NEWTWO"
-          ],
           "type": "string"
         },
         "measurementID": {
