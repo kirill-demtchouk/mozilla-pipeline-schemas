@@ -820,7 +820,7 @@
     "type":"object",
     "mozPipelineMetadata":{
         "bq_dataset_family":"org_mozilla_firefox_beta",
-        "bq_table":"first-session_v1",
+        "bq_table":"first_session_v1",
         "bq_metadata_format":"structured"
     }
 }

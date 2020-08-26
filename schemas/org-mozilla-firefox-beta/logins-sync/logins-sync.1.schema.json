@@ -820,7 +820,7 @@
     "type":"object",
     "mozPipelineMetadata":{
         "bq_dataset_family":"org_mozilla_firefox_beta",
-        "bq_table":"logins-sync_v1",
+        "bq_table":"logins_sync_v1",
         "bq_metadata_format":"structured"
     }
 }
