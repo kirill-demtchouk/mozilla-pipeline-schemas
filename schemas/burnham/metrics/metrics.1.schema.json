@@ -817,5 +817,10 @@
         "client_info"
     ],
     "title":"Ping transport",
-    "type":"object"
+    "type":"object",
+    "mozPipelineMetadata":{
+        "bq_dataset_family":"burnham",
+        "bq_table":"metrics_v1",
+        "bq_metadata_format":"structured"
+    }
 }
