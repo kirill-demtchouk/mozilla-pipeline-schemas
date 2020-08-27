@@ -3,6 +3,11 @@
     "$schema":"http://json-schema.org/draft-06/schema#",
     "additionalProperties":false,
     "description":"Schema for the ping content sent by Mozilla's glean telemetry SDK\n",
+    "mozPipelineMetadata":{
+        "bq_dataset_family":"mozphab",
+        "bq_metadata_format":"structured",
+        "bq_table":"events_v1"
+    },
     "properties":{
         "$schema":{
             "enum":[
@@ -817,10 +822,5 @@
         "client_info"
     ],
     "title":"Ping transport",
-    "type":"object",
-    "mozPipelineMetadata":{
-        "bq_dataset_family":"mozphab",
-        "bq_table":"events_v1",
-        "bq_metadata_format":"structured"
-    }
+    "type":"object"
 }
