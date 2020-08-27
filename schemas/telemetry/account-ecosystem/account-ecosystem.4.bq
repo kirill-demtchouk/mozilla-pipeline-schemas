@@ -122,6 +122,16 @@
             "fields": [
               {
                 "mode": "NULLABLE",
+                "name": "has_prefetch",
+                "type": "BOOL"
+              },
+              {
+                "mode": "NULLABLE",
+                "name": "has_superfetch",
+                "type": "BOOL"
+              },
+              {
+                "mode": "NULLABLE",
                 "name": "locale",
                 "type": "STRING"
               },
