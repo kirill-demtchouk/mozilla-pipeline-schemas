@@ -1342,16 +1342,6 @@
           {
             "fields": [
               {
-                "mode": "NULLABLE",
-                "name": "has_prefetch",
-                "type": "BOOL"
-              },
-              {
-                "mode": "NULLABLE",
-                "name": "has_superfetch",
-                "type": "BOOL"
-              },
-              {
                 "description": "The year Windows was installed. This is Windows only. `null` on failure.",
                 "mode": "NULLABLE",
                 "name": "install_year",
@@ -1388,6 +1378,7 @@
                 "type": "FLOAT64"
               },
               {
+                "description": "The version of the OS, e.g. '6.1'. This is `null` on failure.",
                 "mode": "NULLABLE",
                 "name": "version",
                 "type": "STRING"

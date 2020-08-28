@@ -15,8 +15,7 @@
           "description": "NOT YET IMPLEMENTED: The logical format for the metadata struct in the destination BigQuery table",
           "enum": [
             "structured",
-            "telemetry",
-            "pioneer"
+            "telemetry"
           ],
           "type": "string"
         },
