@@ -347,6 +347,11 @@
     "fields": [
       {
         "mode": "NULLABLE",
+        "name": "duration",
+        "type": "INT64"
+      },
+      {
+        "mode": "NULLABLE",
         "name": "ecosystem_client_id",
         "type": "STRING"
       },
