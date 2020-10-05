@@ -58628,6 +58628,24 @@
                         "type": "STRING"
                       },
                       {
+                        "description": "A keyed uint recording how many times the user entered a particular search mode after selecting a tab-to-search result.\n",
+                        "mode": "NULLABLE",
+                        "name": "value",
+                        "type": "INT64"
+                      }
+                    ],
+                    "mode": "REPEATED",
+                    "name": "urlbar_searchmode_tabtosearch",
+                    "type": "RECORD"
+                  },
+                  {
+                    "fields": [
+                      {
+                        "mode": "NULLABLE",
+                        "name": "key",
+                        "type": "STRING"
+                      },
+                      {
                         "description": "A keyed uint recording how many times the user entered a particular search mode after selecting a search shortcut Top Site on the New Tab Page.\n",
                         "mode": "NULLABLE",
                         "name": "value",
