@@ -145,93 +145,69 @@
           "type": "array"
         },
         "histograms": {
-          "additionalProperties": {
-            "anyOf": [
-              {
-                "$comment": "Desktop-style histograms",
-                "additionalProperties": false,
-                "properties": {
-                  "bucket_count": {
-                    "minimum": 0,
-                    "type": "integer"
-                  },
-                  "histogram_type": {
-                    "minimum": 0,
-                    "type": "integer"
-                  },
-                  "log_sum": {
-                    "minimum": 0,
-                    "type": "number"
-                  },
-                  "log_sum_squares": {
-                    "minimum": 0,
-                    "type": "number"
-                  },
-                  "range": {
-                    "items": {
-                      "type": "integer"
-                    },
-                    "type": "array"
-                  },
-                  "sum": {
-                    "minimum": 0,
-                    "type": "integer"
-                  },
-                  "sum_squares_hi": {
-                    "minimum": 0,
-                    "type": "integer"
-                  },
-                  "sum_squares_lo": {
-                    "minimum": 0,
-                    "type": "integer"
-                  },
-                  "values": {
-                    "additionalProperties": false,
-                    "patternProperties": {
-                      "^[0-9]+$": {
-                        "minimum": 0,
-                        "type": "integer"
-                      }
-                    },
-                    "type": "object"
-                  }
-                },
-                "type": "object"
-              },
-              {
-                "$comment": "Nondesktop-style histograms",
-                "additionalProperties": false,
-                "properties": {
-                  "counts": {
-                    "items": {
-                      "type": "integer"
-                    },
-                    "type": "array"
-                  },
-                  "histogram_type": {
-                    "type": "integer"
-                  },
-                  "max": {
-                    "type": "integer"
-                  },
-                  "min": {
-                    "type": "integer"
-                  },
-                  "ranges": {
-                    "items": {
-                      "type": "integer"
-                    },
-                    "type": "array"
-                  },
-                  "sum": {
-                    "type": "integer"
-                  }
-                },
-                "type": "object"
-              }
-            ]
-          },
-          "type": "object"
+          "type": "object",
+          "properties": {
+            "PWMGR_BLOCKLIST_NUM_SITES": {
+              "type": "string",
+              "description": "The number of sites for which the user has explicitly rejected saving logins"
+            },
+            "PWMGR_LOGIN_LAST_USED_DAYS": {
+              "type": "string",
+              "description": "Time in days each saved login was last used"
+            },
+            "PWMGR_NUM_PASSWORDS_PER_HOSTNAME": {
+              "type": "string",
+              "description": "The number of passwords per hostname"
+            },
+            "PWMGR_NUM_SAVED_PASSWORDS": {
+              "type": "string",
+              "description": "Total number of saved logins, including those that cannot be decrypted"
+            },
+            "PWMGR_SAVING_ENABLED": {
+              "type": "string",
+              "description": "Number of users who have password saving on globally"
+            },
+            "PWMGR_FORM_AUTOFILL_RESULT": {
+              "type": "string",
+              "description": "The result of auto-filling a login form. See http://mzl.la/1Mbs6jL for bucket descriptions."
+            },
+            "PWMGR_PROMPT_REMEMBER_ACTION": {
+              "type": "string",
+              "description": "Action taken by user through prompt for creating a login. (0=Prompt displayed [always recorded], 1=Add login, 2=Don't save now, 3=Never save)"
+            },
+            "PWMGR_PROMPT_UPDATE_ACTION": {
+              "type": "string",
+              "description": "Action taken by user through prompt for modifying a login. (0=Prompt displayed [always recorded], 1=Update login, 2=Don't update, 3=Remove saved login)"
+            },
+            "PWMGR_MANAGE_COPIED_PASSWORD": {
+              "type": "string",
+              "description": "Count of passwords copied from the password management interface"
+            },
+            "PWMGR_MANAGE_COPIED_USERNAME": {
+              "type": "string",
+              "description": "Count of usernames copied from the password management interface"
+            },
+            "PWMGR_MANAGE_DELETED": {
+              "type": "string",
+              "description": "Count of passwords deleted from the password management interface (including via Remove All)"
+            },
+            "PWMGR_MANAGE_DELETED_ALL": {
+              "type": "string",
+              "description": "Count of times that Remove All was used from the password management interface"
+            },
+            "PWMGR_MANAGE_OPENED": {
+              "type": "string",
+              "description": "Accumulates how the password management interface was opened. (0=Preferences, 1=Page Info)"
+            },
+            "PWMGR_MANAGE_VISIBILITY_TOGGLED": {
+              "type": "string",
+              "description": "Whether the visibility of passwords was toggled (0=Hide, 1=Show)"
+            },
+            "PWMGR_LOGIN_PAGE_SAFETY": {
+              "type": "string",
+              "description": "The safety of a page where we see a password field. (0: safe page & safe submit; 1: safe page & unsafe submit; 2: safe page & unknown submit; 3: unsafe page & safe submit; 4: unsafe page & unsafe submit; 5: unsafe page & unknown submit)"
+            }
+          }
         },
         "migrations": {
           "items": {
@@ -660,6 +636,149 @@
       "maximum": 4,
       "minimum": 4,
       "type": "number"
+    },
+    "additional_properties": {
+      "description": "A JSON string containing any payload properties not present in the schema",
+      "type": "string"
+    },
+    "document_id": {
+      "description": "The document ID specified in the URI when the client sent this message",
+      "type": "string"
+    },
+    "metadata": {
+      "properties": {
+        "geo": {
+          "description": "Results of a geographic lookup based on the client's IP address",
+          "properties": {
+            "city": {
+              "type": "string"
+            },
+            "country": {
+              "description": "An ISO 3166-1 alpha-2 country code",
+              "type": "string"
+            },
+            "db_version": {
+              "description": "The specific geo database version used for this lookup",
+              "type": "string"
+            },
+            "subdivision1": {
+              "description": "First major country subdivision, typically a state, province, or county",
+              "type": "string"
+            },
+            "subdivision2": {
+              "description": "Second major country subdivision; not applicable for most countries",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "header": {
+          "description": "Headers included in the client's HTTP request",
+          "properties": {
+            "date": {
+              "description": "Date HTTP header",
+              "type": "string"
+            },
+            "dnt": {
+              "description": "DNT (Do Not Track) HTTP header",
+              "type": "string"
+            },
+            "x_debug_id": {
+              "description": "X-Debug-Id HTTP header",
+              "type": "string"
+            },
+            "x_pingsender_version": {
+              "description": "X-PingSender-Version HTTP header",
+              "type": "string"
+            },
+            "x_source_tags": {
+              "description": "X-Source-Tags HTTP header",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "isp": {
+          "description": "Results of ISP lookup based on the client's IP address",
+          "properties": {
+            "db_version": {
+              "description": "The specific geo ISP database version used for this lookup",
+              "type": "string"
+            },
+            "name": {
+              "description": "The name of the ISP associated with the client's IP address",
+              "type": "string"
+            },
+            "organization": {
+              "description": "The name of a specific business entity associated with the client's IP address when available; otherwise the ISP name",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "uri": {
+          "description": "Components of the URI to which this ping was sent",
+          "properties": {
+            "app_build_id": {
+              "type": "string"
+            },
+            "app_name": {
+              "type": "string"
+            },
+            "app_update_channel": {
+              "type": "string"
+            },
+            "app_version": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "user_agent": {
+          "description": "Parsed components of the client's user agent string",
+          "properties": {
+            "browser": {
+              "type": "string"
+            },
+            "os": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "normalized_app_name": {
+      "description": "Set to \"Other\" if this message contained an unrecognized app name",
+      "type": "string"
+    },
+    "normalized_channel": {
+      "description": "Set to \"Other\" if this message contained an unrecognized channel name",
+      "type": "string"
+    },
+    "normalized_country_code": {
+      "description": "An ISO 3166-1 alpha-2 country code",
+      "type": "string"
+    },
+    "normalized_os": {
+      "description": "Set to \"Other\" if this message contained an unrecognized OS name",
+      "type": "string"
+    },
+    "normalized_os_version": {
+      "type": "string"
+    },
+    "sample_id": {
+      "description": "Hashed version of client_id (if present) useful for partitioning; ranges from 0 to 99",
+      "type": "integer"
+    },
+    "submission_timestamp": {
+      "description": "Time when the ingestion edge server accepted this message",
+      "format": "date-time",
+      "type": "string"
     }
   },
   "required": [
@@ -668,7 +787,9 @@
     "id",
     "creationDate",
     "version",
-    "payload"
+    "payload",
+    "submission_timestamp",
+    "metadata"
   ],
   "title": "sync",
   "type": "object"
