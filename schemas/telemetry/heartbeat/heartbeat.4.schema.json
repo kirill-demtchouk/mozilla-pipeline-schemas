@@ -91,7 +91,11 @@
                     ]
                   },
                   "foreignInstall": {
-                    "type": "integer"
+                    "description": "True or false depending on whether the add-on is a third party add-on installation or not. This field is only available after the 'sessionstore-windows-restored' topic is notified.",
+                    "type": [
+                      "integer",
+                      "boolean"
+                    ]
                   },
                   "hasBinaryComponents": {
                     "description": "True or false depending on whether the add-on has binary components. This is always false since Firefox 60. This field is only available after the 'sessionstore-windows-restored' topic is notified.",
@@ -144,10 +148,18 @@
                     ]
                   },
                   "userDisabled": {
-                    "type": "integer"
+                    "description": "Whether or not the user disabled the add-on. This field is only available after the 'sessionstore-windows-restored' topic is notified.",
+                    "type": [
+                      "boolean",
+                      "integer"
+                    ]
                   },
                   "version": {
-                    "type": "string"
+                    "description": "The version of the add-on. This field is available at startup.",
+                    "type": [
+                      "string",
+                      "number"
+                    ]
                   }
                 },
                 "type": "object"
@@ -169,8 +181,10 @@
               "additionalProperties": {
                 "properties": {
                   "applyBackgroundUpdates": {
-                    "type": "integer",
-                    "description": "Cast into an integer via mozilla-schema-generator. See bug 1611027."
+                    "type": [
+                      "integer",
+                      "boolean"
+                    ]
                   },
                   "userDisabled": {
                     "type": "boolean"
@@ -245,7 +259,11 @@
                   ]
                 },
                 "foreignInstall": {
-                  "type": "integer"
+                  "description": "True or false depending on whether the theme is a third party theme installation or not.",
+                  "type": [
+                    "boolean",
+                    "integer"
+                  ]
                 },
                 "hasBinaryComponents": {
                   "description": "True or false depending on whether the theme has binary components. This is always false since Firefox 60.",
@@ -532,7 +550,7 @@
             "defaultSearchEngineData": {
               "properties": {
                 "loadPath": {
-                  "description": "The anonymized path of the engine xml file, e.g. e.g. jar:[app]/omni.ja!browser/engine.xml (where \u2018browser\u2019 is the name of the chrome package, not a folder) [profile]/searchplugins/engine.xml [distribution]/searchplugins/common/engine.xml [other]/engine.xml [other]/addEngineWithDetails [other]/addEngineWithDetails:extensionID [http/https]example.com/engine-name.xml [http/https]example.com/engine-name.xml:extensionID",
+                  "description": "The anonymized path of the engine xml file, e.g. e.g. jar:[app]/omni.ja!browser/engine.xml (where ‘browser’ is the name of the chrome package, not a folder) [profile]/searchplugins/engine.xml [distribution]/searchplugins/common/engine.xml [other]/engine.xml [other]/addEngineWithDetails [other]/addEngineWithDetails:extensionID [http/https]example.com/engine-name.xml [http/https]example.com/engine-name.xml:extensionID",
                   "type": [
                     "string",
                     "null"
@@ -547,7 +565,7 @@
                   "type": "string"
                 },
                 "submissionURL": {
-                  "description": "The HTTP url we would use to search. For privacy, we don\u2019t record this for user-installed engines.",
+                  "description": "The HTTP url we would use to search. For privacy, we don’t record this for user-installed engines.",
                   "type": "string"
                 }
               },
@@ -671,11 +689,15 @@
               "type": "object"
             },
             "userPrefs": {
-              "type": "object",
               "additionalProperties": {
-                "type": "string"
+                "type": [
+                  "boolean",
+                  "string",
+                  "number",
+                  "null"
+                ]
               },
-              "description": "User preferences - limited to an allowlist defined in `toolkit/components/telemetry/app/TelemetryEnvironment.jsm`"
+              "type": "object"
             }
           },
           "type": "object"
@@ -1383,149 +1405,6 @@
       "maximum": 4,
       "minimum": 4,
       "type": "number"
-    },
-    "additional_properties": {
-      "description": "A JSON string containing any payload properties not present in the schema",
-      "type": "string"
-    },
-    "document_id": {
-      "description": "The document ID specified in the URI when the client sent this message",
-      "type": "string"
-    },
-    "metadata": {
-      "properties": {
-        "geo": {
-          "description": "Results of a geographic lookup based on the client's IP address",
-          "properties": {
-            "city": {
-              "type": "string"
-            },
-            "country": {
-              "description": "An ISO 3166-1 alpha-2 country code",
-              "type": "string"
-            },
-            "db_version": {
-              "description": "The specific geo database version used for this lookup",
-              "type": "string"
-            },
-            "subdivision1": {
-              "description": "First major country subdivision, typically a state, province, or county",
-              "type": "string"
-            },
-            "subdivision2": {
-              "description": "Second major country subdivision; not applicable for most countries",
-              "type": "string"
-            }
-          },
-          "type": "object"
-        },
-        "header": {
-          "description": "Headers included in the client's HTTP request",
-          "properties": {
-            "date": {
-              "description": "Date HTTP header",
-              "type": "string"
-            },
-            "dnt": {
-              "description": "DNT (Do Not Track) HTTP header",
-              "type": "string"
-            },
-            "x_debug_id": {
-              "description": "X-Debug-Id HTTP header",
-              "type": "string"
-            },
-            "x_pingsender_version": {
-              "description": "X-PingSender-Version HTTP header",
-              "type": "string"
-            },
-            "x_source_tags": {
-              "description": "X-Source-Tags HTTP header",
-              "type": "string"
-            }
-          },
-          "type": "object"
-        },
-        "isp": {
-          "description": "Results of ISP lookup based on the client's IP address",
-          "properties": {
-            "db_version": {
-              "description": "The specific geo ISP database version used for this lookup",
-              "type": "string"
-            },
-            "name": {
-              "description": "The name of the ISP associated with the client's IP address",
-              "type": "string"
-            },
-            "organization": {
-              "description": "The name of a specific business entity associated with the client's IP address when available; otherwise the ISP name",
-              "type": "string"
-            }
-          },
-          "type": "object"
-        },
-        "uri": {
-          "description": "Components of the URI to which this ping was sent",
-          "properties": {
-            "app_build_id": {
-              "type": "string"
-            },
-            "app_name": {
-              "type": "string"
-            },
-            "app_update_channel": {
-              "type": "string"
-            },
-            "app_version": {
-              "type": "string"
-            }
-          },
-          "type": "object"
-        },
-        "user_agent": {
-          "description": "Parsed components of the client's user agent string",
-          "properties": {
-            "browser": {
-              "type": "string"
-            },
-            "os": {
-              "type": "string"
-            },
-            "version": {
-              "type": "string"
-            }
-          },
-          "type": "object"
-        }
-      },
-      "type": "object"
-    },
-    "normalized_app_name": {
-      "description": "Set to \"Other\" if this message contained an unrecognized app name",
-      "type": "string"
-    },
-    "normalized_channel": {
-      "description": "Set to \"Other\" if this message contained an unrecognized channel name",
-      "type": "string"
-    },
-    "normalized_country_code": {
-      "description": "An ISO 3166-1 alpha-2 country code",
-      "type": "string"
-    },
-    "normalized_os": {
-      "description": "Set to \"Other\" if this message contained an unrecognized OS name",
-      "type": "string"
-    },
-    "normalized_os_version": {
-      "type": "string"
-    },
-    "sample_id": {
-      "description": "Hashed version of client_id (if present) useful for partitioning; ranges from 0 to 99",
-      "type": "integer"
-    },
-    "submission_timestamp": {
-      "description": "Time when the ingestion edge server accepted this message",
-      "format": "date-time",
-      "type": "string"
     }
   },
   "required": [
@@ -1535,9 +1414,7 @@
     "version",
     "clientId",
     "application",
-    "payload",
-    "submission_timestamp",
-    "metadata"
+    "payload"
   ],
   "title": "heartbeat",
   "type": "object"
